@@ -1,5 +1,11 @@
-{
-  "IPC_Sections": [
+document.getElementById('send-btn').addEventListener('click', sendMessage);
+document.getElementById('user-input').addEventListener('keypress', function(e) {
+  if (e.key === 'Enter') {
+    sendMessage();
+  }
+});
+
+let ipcData = [
     {
       "section": "IPC 302",
       "offense": "Murder",
@@ -187,5 +193,58 @@
       "description": "Counterfeiting currency."
     }
     
-]
+];
+
+async function sendMessage() {
+  const inputBox = document.getElementById('user-input');
+  const userText = inputBox.value.trim();
+  if (userText === "") return;
+
+  appendMessage('user', userText);
+  inputBox.value = "";
+
+  const responseText = await getBotResponse(userText);
+  appendMessage('bot', responseText);
+}
+
+function appendMessage(sender, text) {
+  const chatWindow = document.getElementById('chat-window');
+  const messageDiv = document.createElement('div');
+  messageDiv.classList.add('chat-message');
+  messageDiv.classList.add(sender === 'user' ? 'user-message' : 'bot-message');
+  messageDiv.innerText = text;
+  chatWindow.appendChild(messageDiv);
+  chatWindow.scrollTop = chatWindow.scrollHeight;
+}
+
+async function getBotResponse(input) {
+  try {
+    const lowerInput = input.toLowerCase();
+    const matchingData = ipcData.find(item => {
+      return (
+        item.section.toLowerCase().includes(lowerInput) ||
+        item.offense.toLowerCase().includes(lowerInput) ||
+        item.description.toLowerCase().includes(lowerInput)
+      );
+    });
+
+    if (matchingData) {
+      return `Description: ${capitalize(matchingData.description)}\nOffense: ${matchingData.offense}\nPunishment: ${matchingData.punishment}\nSection: ${matchingData.section}`;
+    }
+
+    const response = await fetch(`/query?query=${encodeURIComponent(input)}`);
+    if (!response.ok) {
+      return "I'm sorry, I couldn't find any legal details for that query.";
+    }
+    const data = await response.json();
+    return `Description: ${capitalize(data.description)}\nOffense: ${data.offense}\nPunishment: ${data.punishment}\nSection: ${data.section}`;
+  } catch (error) {
+    console.error('Error:', error);
+    return "There was an error processing your request.";
+  }
+}
+
+function capitalize(str) {
+  if (!str) return "";
+  return str.charAt(0).toUpperCase() + str.slice(1);
 }
