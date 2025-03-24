@@ -28,6 +28,7 @@ let ipcData = [
       "section": "IPC 379",
       "offense": "Theft",
       "punishment": "Up to 3 Years or Fine or Both",
+      "procedure": "The investigation procedure for a robbery typically involves several systematic steps to gather evidence, identify suspects, and build a case. \n\nHere’s a general outline:\n\n1. Initial Response\n\n\tArrival at Scene: Police officers secure the scene to prevent contamination of evidence. \n\n\tMedical Assistance: Provide aid to any injured victims. \n\n\tSuspect Search: If the suspect is nearby or identified, officers may initiate a search or pursuit. \n\n\tInterview Witnesses: Gather initial statements from victims, witnesses, and bystanders. \n\n2. Scene Investigation\n\n\tCrime Scene Preservation: Establish a perimeter to avoid evidence tampering. \n\n\tPhotography and Documentation: Capture photos and videos of the scene, including damaged property, stolen items, and any evidence left behind. \n\n\tEvidence Collection:\n\n\t\tFingerprints\n\n\t\tFootprints or tire marks\n\n\t\tBlood or other biological evidence\n\n\t\tWeapons or tools used in the robbery\n\n\t\tSurveillance footage from nearby cameras\n\n\tSketching the Scene: Create detailed sketches for reference. \n\n3. Victim and Witness Statements\n\n\tDetailed Interviews: Take formal statements from victims and witnesses, noting descriptions of the suspect, stolen items, and the sequence of events. \n\n\tComposite Sketches: If possible, work with sketch artists to create a suspect portrait. \n\n4. Investigative Follow-up\n\n\tSurveillance Review: Analyze footage from CCTV cameras. \n\n\tPhone Records and Digital Evidence: Examine relevant phone calls, messages, or GPS data. \n\n\tCheck Criminal Records: Compare the suspect's description with known offenders. \n\n\tWitness Identification: Conduct line-ups or photo arrays for potential identification. \n\n5. Forensic Analysis\n\n\tSubmit evidence to forensic labs for fingerprint analysis, DNA testing, or ballistic examination if firearms were used. \n\n6. Suspect Interrogation\n\n\tIf a suspect is apprehended, conduct interviews using lawful interrogation techniques to gather information or obtain a confession. \n\n7. Report and Documentation\n\n\tCompile a detailed investigation report, including findings, evidence, statements, and conclusions. \n\n8. Case Handoff\n\n\tWork closely with prosecutors to prepare the case for court. Provide testimony as needed.",
       "description": "Dishonest taking of movable property."
     },
     {
@@ -230,7 +231,13 @@ async function getBotResponse(input) {
     });
 
     if (matchingData) {
-      return `Description: ${capitalize(matchingData.description)}\nOffense: ${matchingData.offense}\nPunishment: ${matchingData.punishment}\nSection: ${matchingData.section}`;
+      if (matchingData.procedure == undefined) {
+        return `Description: ${capitalize(matchingData.description)}\nOffense: ${matchingData.offense}\nPunishment: ${matchingData.punishment}\nSection: ${matchingData.section}`;
+
+      }else{
+        return `Description: ${capitalize(matchingData.description)}\nOffense: ${matchingData.offense}\nPunishment: ${matchingData.punishment}\nSection: ${matchingData.section}\n\n\nProcedure: ${matchingData.procedure}`;
+
+      }
     }
 
     const response = await fetch(`/query?query=${encodeURIComponent(input)}`);
