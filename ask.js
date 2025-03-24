@@ -224,7 +224,8 @@ async function getBotResponse(input) {
       return (
         item.section.toLowerCase().includes(lowerInput) ||
         item.offense.toLowerCase().includes(lowerInput) ||
-        item.description.toLowerCase().includes(lowerInput)
+        item.description.toLowerCase().includes(lowerInput) ||
+        lowerInput.includes(item.offense.toLowerCase()) // Check if input contains offense
       );
     });
 
