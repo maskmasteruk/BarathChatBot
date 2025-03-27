@@ -35,33 +35,54 @@
             background-color: #ffe6e6;
         }
 
-    .button-container {
-      display: flex;
-      justify-content: space-around;
-      width: 100%;
-    }
+        .button-container {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+        }
 
-    .button {
-      background-color: #007bff;
-      color: white;
-      padding: 15px;
-      text-align: center;
-      width: 100%;
-      cursor: pointer;
-      border-radius: 5px;
-      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-      font-size: 18px;
-      transition: background-color 0.3s ease, transform 0.2s;
-    }
+        .button {
+            background-color: #007bff;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            width: 100%;
+            cursor: pointer;
+            border-radius: 5px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            font-size: 18px;
+            transition: background-color 0.3s ease, transform 0.2s;
+        }
 
-    .button:hover {
-      background-color: #0056b3;
-      transform: scale(1.05);
-    }
+        .button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
 
-    .button:active {
-      transform: scale(0.98);
-    }
+        .button:active {
+            transform: scale(0.98);
+        }
+
+        .call-button {
+            background-color: #28a745;
+            color: white;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            text-align: center;
+            transition: background-color 0.3s ease, transform 0.2s;
+        }
+
+        .call-button:hover {
+            background-color: #218838;
+            transform: scale(1.05);
+        }
+
+        .call-button:active {
+            transform: scale(0.98);
+        }
+
     </style>
 </head>
 <body>
@@ -73,6 +94,7 @@
                 <th>Service</th>
                 <th>Number</th>
                 <th>Description</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -80,54 +102,62 @@
                 <td>Police Emergency (General)</td>
                 <td class="emergency-number">100</td>
                 <td>For all general police emergencies.</td>
+                <td><button class="call-button" onclick="window.location.href='tel:100'">Call</button></td>
             </tr>
             <tr>
                 <td>Child Helpline</td>
                 <td>1098</td>
                 <td>For reporting child abuse, neglect, or children in distress.</td>
+                <td><button class="call-button" onclick="window.location.href='tel:1098'">Call</button></td>
             </tr>
             <tr>
                 <td>Women Helpline</td>
                 <td>1091</td>
                 <td>For reporting domestic violence, harassment, or other issues related to women's safety.</td>
+                <td><button class="call-button" onclick="window.location.href='tel:1091'">Call</button></td>
             </tr>
             <tr>
                 <td>Cyber Crime Helpline</td>
                 <td>1930</td>
                 <td>For reporting online fraud, cyberbullying, and other cyber crimes.</td>
+                <td><button class="call-button" onclick="window.location.href='tel:1930'">Call</button></td>
             </tr>
             <tr>
                 <td>Senior Citizen Helpline</td>
                 <td>1090</td>
                 <td>For assistance and reporting issues related to senior citizens.</td>
+                <td><button class="call-button" onclick="window.location.href='tel:1090'">Call</button></td>
             </tr>
             <tr>
                 <td>Ambulance</td>
                 <td class="emergency-number">108</td>
                 <td>Emergency ambulance services.</td>
+                <td><button class="call-button" onclick="window.location.href='tel:108'">Call</button></td>
             </tr>
             <tr>
                 <td>Fire Brigade</td>
                 <td class="emergency-number">101</td>
                 <td>Emergency fire services.</td>
+                <td><button class="call-button" onclick="window.location.href='tel:101'">Call</button></td>
             </tr>
             <tr>
-              <td>Traffic Police Helpline</td>
-              <td>1073</td>
-              <td>For traffic related issues.</td>
+                <td>Traffic Police Helpline</td>
+                <td>1073</td>
+                <td>For traffic related issues.</td>
+                <td><button class="call-button" onclick="window.location.href='tel:1073'">Call</button></td>
             </tr>
             <tr>
-              <td>Missing Persons Helpline</td>
-              <td>1094</td>
-              <td>For reporting missing persons.</td>
+                <td>Missing Persons Helpline</td>
+                <td>1094</td>
+                <td>For reporting missing persons.</td>
+                <td><button class="call-button" onclick="window.location.href='tel:1094'">Call</button></td>
             </tr>
         </tbody>
     </table>
 
-
-  <div class="button-container">
-    <div class="button" onclick="window.location='https://eservices.tnpolice.gov.in/'"><p>Tamil Nadu Police Citizen Portal</p></div>
-  </div>
+    <div class="button-container">
+        <div class="button" onclick="window.location='https://eservices.tnpolice.gov.in/'"><p>Tamil Nadu Police Citizen Portal</p></div>
+    </div>
 
     <p><strong>Note:</strong> These numbers are general emergency numbers and may vary slightly depending on your location. Please check with your local police department for the most accurate and up-to-date information.</p>
 </body>
